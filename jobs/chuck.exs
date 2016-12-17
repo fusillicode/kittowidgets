@@ -5,22 +5,24 @@ defmodule Kitto.Jobs.Chuck do
   @average_words_read_per_minute 200
 
   def fetch_joke do
-    HTTPoison.get!("#{@endpoint}/jokes/random", [], [ ssl: [{:versions, [:'tlsv1.2']}] ]).body
+    "#{@endpoint}/jokes/random"
+    |> HTTPoison.get!([], [ ssl: [{:versions, [:'tlsv1.2']}] ])
+    |> Map.get(:body)
     |> Poison.decode!
     |> parse_response
     |> HtmlEntities.decode
   end
 
   def wait_to_read(joke) do
-    :timer.sleep seconds_need_to_read(joke)
+    joke |> seconds_needed_to_read |> :timer.sleep
   end
 
   defp parse_response(%{"type" => "success", "value" => %{"id" => _, "joke" => joke, "categories" => _}}), do: joke
   defp parse_response(_), do: "Something went wrong 😢"
 
-  def seconds_need_to_read(joke) when is_bitstring(joke), do: joke |> String.split |> seconds_need_to_read
-  def seconds_need_to_read(joke) when is_list(joke), do: joke |> length |> seconds_need_to_read
-  def seconds_need_to_read(joke) when is_number(joke), do: (joke * 60 / @average_words_read_per_minute) * 1000 |> round
+  defp seconds_needed_to_read(joke) when is_bitstring(joke), do: joke |> String.split |> seconds_needed_to_read
+  defp seconds_needed_to_read(joke) when is_list(joke), do: joke |> length |> seconds_needed_to_read
+  defp seconds_needed_to_read(joke) when is_number(joke), do: (joke * 60 / @average_words_read_per_minute) * 1000 |> round
 end
 
 HTTPoison.start
