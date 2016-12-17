@@ -3,6 +3,7 @@
   "cowlib": {:hex, :cowlib, "1.0.2", "9d769a1d062c9c3ac753096f868ca121e2730b9a377de23dec0f7e08b1df84ee", [:make], []},
   "fs": {:hex, :fs, "2.11.0", "0dc1acc602e19de4075cfdf4cadbbb0a3316b2ee5f292d9f3ed1e26818f23f35", [:mix, :rebar3], []},
   "hackney": {:hex, :hackney, "1.6.3", "d489d7ca2d4323e307bedc4bfe684323a7bf773ecfd77938f3ee8074e488e140", [:mix, :rebar3], [{:certifi, "0.7.0", [hex: :certifi, optional: false]}, {:idna, "1.2.0", [hex: :idna, optional: false]}, {:metrics, "1.0.1", [hex: :metrics, optional: false]}, {:mimerl, "1.0.2", [hex: :mimerl, optional: false]}, {:ssl_verify_fun, "1.1.1", [hex: :ssl_verify_fun, optional: false]}]},
+  "html_entities": {:hex, :html_entities, "0.3.0", "2f278ffc69c3f0cbd5996628fef37cf922fa715f3e04b9f38924c8adced3f25a", [:mix], []},
   "httpoison": {:hex, :httpoison, "0.10.0", "4727b3a5e57e9a4ff168a3c2883e20f1208103a41bccc4754f15a9366f49b676", [:mix], [{:hackney, "~> 1.6.3", [hex: :hackney, optional: false]}]},
   "idna": {:hex, :idna, "1.2.0", "ac62ee99da068f43c50dc69acf700e03a62a348360126260e87f2b54eced86b2", [:rebar3], []},
   "kitto": {:hex, :kitto, "0.3.0", "a8ef44e02acbd8ce6e487ce645c47d077d85df0c6fd7c71ae1374376cdb7a392", [:mix], [{:cowboy, "~> 1.0.0", [hex: :cowboy, optional: false]}, {:fs, "~> 2.11.0", [hex: :fs, optional: false]}, {:httpoison, "~> 0.10.0", [hex: :httpoison, optional: false]}, {:plug, "~> 1.2", [hex: :plug, optional: false]}, {:poison, "~> 3.0", [hex: :poison, optional: false]}]},

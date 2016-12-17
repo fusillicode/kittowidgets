@@ -21,6 +21,9 @@ defmodule Kittowidgets.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:kitto, "~> 0.3.0"}]
+    [{:kitto, "~> 0.3.0"},
+     {:httpoison, "~> 0.10.0"},
+     {:poison, "~> 3.0"},
+     {:html_entities, "~> 0.3"}]
   end
 end
