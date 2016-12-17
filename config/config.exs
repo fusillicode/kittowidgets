@@ -25,7 +25,6 @@ config :kitto, reload_code?: false
 
 # Use default_dashboard: "your-dashboard" to specify the dashboard to be served
 # when the root path is requested.
-config :kitto, default_dashboard: "mikamai"
 
 # Configures Elixir's Logger
 config :logger, :console,
