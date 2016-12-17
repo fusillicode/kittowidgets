@@ -21,8 +21,8 @@ defmodule Kitto.Jobs.Chuck do
     joke |> seconds_needed_to_read |> :timer.sleep
   end
 
-  defp parse_response(%{"type" => "success", "value" => %{"id" => _, "joke" => joke, "categories" => _}}), do: joke
-  defp parse_response(%{"icon_url" => _, "id" => _, "url" => _, "value" => joke}), do: joke
+  defp parse_response(%{"type" => "success", "value" => %{"joke" => joke}}), do: joke
+  defp parse_response(%{"value" => joke}), do: joke
   defp parse_response(_), do: "Something went wrong 😢"
 
   defp seconds_needed_to_read(joke) when is_bitstring(joke), do: joke |> String.split |> seconds_needed_to_read
@@ -32,7 +32,7 @@ end
 
 HTTPoison.start
 
-job :chuck, every: {5, :seconds} do
+job :chuck, every: {1, :seconds} do
   joke = Kitto.Jobs.Chuck.fetch_joke
   broadcast! :chuck, %{text: joke}
   Kitto.Jobs.Chuck.wait_to_read joke
