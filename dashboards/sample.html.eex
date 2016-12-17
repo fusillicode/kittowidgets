@@ -9,6 +9,12 @@
            data-moreinfo="Protip: You can drag the widgets around!"></div>
     </li>
 
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div class="widget-chuck"
+           data-widget="Text"
+           data-source="chuck"></div>
+    </li>
+
     <li data-row="1"
         data-col="3"
         data-sizex="1"
