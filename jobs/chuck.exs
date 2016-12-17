@@ -1,11 +1,15 @@
 use Kitto.Job.DSL
 
 defmodule Kitto.Jobs.Chuck do
-  @endpoint "http://api.icndb.com"
+  @endpoints [
+    "http://api.icndb.com/jokes/random",
+    "https://api.chucknorris.io/jokes/random"
+  ]
   @average_words_read_per_minute 200
 
   def fetch_joke do
-    "#{@endpoint}/jokes/random"
+    @endpoints
+    |> Enum.random
     |> HTTPoison.get!([], [ ssl: [{:versions, [:'tlsv1.2']}] ])
     |> Map.get(:body)
     |> Poison.decode!
@@ -18,6 +22,7 @@ defmodule Kitto.Jobs.Chuck do
   end
 
   defp parse_response(%{"type" => "success", "value" => %{"id" => _, "joke" => joke, "categories" => _}}), do: joke
+  defp parse_response(%{"icon_url" => _, "id" => _, "url" => _, "value" => joke}), do: joke
   defp parse_response(_), do: "Something went wrong 😢"
 
   defp seconds_needed_to_read(joke) when is_bitstring(joke), do: joke |> String.split |> seconds_needed_to_read
